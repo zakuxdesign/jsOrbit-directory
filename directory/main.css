@@ -1,0 +1,128 @@
+/* Inter Font */
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: #f8f8f8;
+}
+
+h1 {
+  font-weight: 200;
+  font-size: 2rem;
+  margin-bottom: 32px;
+}
+h2 {
+  font-weight: 300;
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 8px;
+  display: block;
+}
+p {
+  font-weight: 300;
+  font-size: 0.8rem;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  display: block;
+}
+
+button {
+  background: #15ebb5;
+  padding: 8px;
+  border-radius: 2px;
+  border: none;
+  font-weight: 200;
+  font-size: 1rem;
+}
+
+button:hover {
+  background: #10b48b;
+  color: #ffffff;
+  transition: 300ms;
+}
+
+#sides {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-start;
+}
+
+label {
+  display: block;
+}
+
+input {
+  border: 1px solid #dfdfdf;
+  padding: 8px;
+  border-radius: 2px;
+}
+
+input:hover {
+  border: 1px solid #cfcfcf;
+}
+
+.input {
+  margin-bottom: 16px;
+  margin-right: 32px;
+}
+
+#page--left-side {
+  max-width: 30vw;
+  background: #ffffff;
+  -webkit-box-shadow: 13px 4px 52px -22px rgba(128, 128, 128, 0.3);
+  -moz-box-shadow: 13px 4px 52px -22px rgba(128, 128, 128, 0.3);
+  box-shadow: 13px 4px 52px -22px rgba(128, 128, 128, 0.3);
+  height: 100vh;
+  border-right: 1px solid #dfdfdf;
+  padding-left: 32px;
+  margin-right: 32px;
+  position: fixed;
+}
+
+#page--right-side {
+  height: 100%;
+  margin-left: 240px;
+  overflow-y: auto;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 280px;
+  background: #ffffff;
+  border: 1px solid #dfdfdf;
+  padding: 16px;
+  border-radius: 2px;
+  margin-top: 32px;
+  margin-right: 32px;
+}
+
+.remove-button {
+  padding: 2px;
+  margin-top: 8px;
+  font-weight: 300;
+  font-size: 0.8rem;
+  background: #ffffff;
+  color: #e95338;
+}
+
+.remove-button:hover {
+  padding: 2px;
+  margin-top: 8px;
+  font-weight: 300;
+  font-size: 0.8rem;
+  background: #ffffff;
+  color: #e95338;
+}

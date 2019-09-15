@@ -14,15 +14,26 @@ function clearInputs() {
 }
 
 /*
-CLEAR ALL INPUTS ------------------------------------------------------------------------------------------------
+CHECK EMAIL ------------------------------------------------------------------------------------------------
 */
-function checkFields() {
-  const input = document.querySelector("input");
+function emailIsValid(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
-  for (var v = 0; v < input.length; v++) {
-    if (input == null) {
-    }
-  }
+/*
+CHECK PHONE ------------------------------------------------------------------------------------------------
+*/
+function phoneIsValid(phone) {
+  return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(
+    phone
+  );
+}
+
+/*
+CAPITALIZE FIRST LETTER OF NAMES ------------------------------------------------------------------------------------------------
+*/
+function capitalizeFirstLetter(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 /*
@@ -66,10 +77,10 @@ function renderToDOM() {
     const removeButton = document.createElement("button");
     removeButton.innerHTML = "Remove";
     removeButton.setAttribute("class", "remove-button");
-    removeButton.setAttribute("id", "remove-button" + contactNumber);
+    removeButton.setAttribute("id", contact);
     document.getElementById(contactNumber).appendChild(removeButton);
-    removeButton.onclick = function(contactNumber) {
-      removeCard(contactNumber);
+    removeButton.onclick = function(e) {
+      removeCard(e);
     };
   }
 }
@@ -87,20 +98,37 @@ addButton.addEventListener("click", function() {
   const lastInput = document.getElementById("last-name").value;
   const emailInput = document.getElementById("email").value;
   const phoneInput = document.getElementById("phone").value;
-  // add inputs to a new object
-  const card = new Object();
-  card.name = firstInput + " " + lastInput;
-  card.email = emailInput;
-  card.phone = phoneInput;
 
-  // pushes to the directory array
-  function addToArray() {
-    directory.push(card);
+  if (
+    firstInput == "" ||
+    lastInput == "" ||
+    emailInput == "" ||
+    phoneInput == ""
+  ) {
+    console.log("Missing fields");
+  } else if (emailIsValid(emailInput) == false) {
+    console.log("Invalid email");
+  } else if (phoneIsValid(phoneInput) == false) {
+    console.log("Invalid phone");
+  } else {
+    // add inputs to a new object
+    const card = new Object();
+    card.name =
+      capitalizeFirstLetter(firstInput) +
+      " " +
+      capitalizeFirstLetter(lastInput);
+    card.email = emailInput;
+    card.phone = phoneInput;
+
+    // pushes to the directory array
+    function addToArray() {
+      directory.push(card);
+    }
+
+    addToArray();
+    clearInputs();
+    renderToDOM();
   }
-
-  addToArray();
-  clearInputs();
-  renderToDOM();
 });
 
 /*
@@ -109,13 +137,11 @@ Main func 3: USER CLICKS DELETE ON CARD ----------------------------------------
   delete that card index from the array
   call a render() function
 */
-function removeCard(id) {
-  console.log("remove " + id);
-  // renderToDOM();
+function removeCard(e) {
+  console.log(e);
+  console.log(e.toElement.id);
 
-  console.log(directory + "before");
-  directory.splice(id, 1);
-  console.log(directory + "after");
+  directory.splice(e.toElement.id, 1);
   renderToDOM();
 }
 
